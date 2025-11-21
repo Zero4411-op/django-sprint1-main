@@ -51,15 +51,13 @@ def index(request):
 
 
 def post_detail(request, id):
-    post = None
-    for p in posts:
-        if p['id'] == id:
-            post = p
+    found_post = None
+    for post in posts:
+        if post['id'] == id:
+            found_post = post
             break
 
-    if post is None:
-        return render(request, 'blog/not_found.html')
-    return render(request, 'blog/detail.html', {'post': post})
+    return render(request, 'blog/detail.html', {'post': found_post})
 
 
 def category_posts(request, category_slug):
